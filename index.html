@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish Patel - Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #080812;
+            --card-color: #11111f;
+            --input-color: #1a1a2e;
+            --primary-text-color: #ffffff;
+            --secondary-text-color: #c4c4c4;
+            --border-color: rgba(255, 255, 255, 0.1);
+            /* New, brighter gradient colors for hover effect and headings */
+            --gradient-start: #C084FC; /* Brighter Purple/Lavender */
+            --gradient-end: #60A5FA;   /* Brighter Blue */
+            --button-blue: #2563eb;
+            --active-green: #10b981;
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        body.light-theme {
+            --bg-color: #f4f7fc;
+            --card-color: #ffffff;
+            --input-color: #eef2f9;
+            --primary-text-color: #11111f;
+            --secondary-text-color: #5a6473;
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* General Styles & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--primary-text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 8rem 0; /* Increased spacing */
+        }
+
+        h1, h2, h3, h4 { font-weight: 600; }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; }
+        .section-subtitle { text-align: center; color: var(--secondary-text-color); font-size: 1rem; margin-bottom: 4rem; }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            background: rgba(8, 8, 18, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        body.light-theme .header {
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-text-color); text-decoration: none; }
+        .nav a { font-size: 1rem; color: var(--secondary-text-color); text-decoration: none; margin-left: 2rem; font-weight: 500; transition: color 0.3s ease; }
+        .nav a:hover, .nav a.active {
+            color: var(--primary-text-color);
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        body.light-theme .nav a.active {
+            color: var(--gradient-start);
+        }
+            
+        #theme-toggle { font-size: 1.5rem; cursor: pointer; }
+        
+        /* General Button & Tag Styles */
+        .btn { padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; border: 2px solid transparent; }
+        .btn-primary { background-color: var(--button-blue); color: #ffffff; border-color: var(--button-blue); }
+        .btn-primary:hover { background-color: #1d4ed8; }
+        .btn-secondary { background-color: transparent; color: var(--primary-text-color); border-color: var(--primary-text-color); }
+        .btn-secondary:hover { background-color: var(--primary-text-color); color: var(--bg-color); }
+        .card-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .tag, .card-tag { background-color: var(--input-color); color: var(--secondary-text-color); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; transition: background-color 0.3s; }
+
+        /* Universal Card Styles & Hover Border */
+        .info-card, .skill-category, .project-card, .timeline-content, .cert-card, .contact-info-item, .about-image-card {
+            background-color: var(--card-color);
+            border: 2px solid var(--border-color); /* Default subtle border */
+            border-radius: 12px;
+            padding: 2rem;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        
+        .info-card:hover, .skill-category:hover, .project-card:hover, .timeline-content:hover, .cert-card:hover, .contact-info-item:hover, .about-image-card:hover {
+            border-color: var(--button-blue); /* Blue border on hover */
+        }
+
+        .info-card h4, .skill-category h3, .project-card h3, .timeline-content h3, .cert-card h3, .contact-info-item h4 {
+            transition: color 0.3s;
+        }
+        
+        .info-card:hover h4, .skill-category:hover h3, .project-card:hover h3, .timeline-content:hover h3, .cert-card:hover h3, .contact-info-item:hover h4 {
+            color: var(--button-blue); /* Blue title on hover */
+        }
+        
+        .about-image-card { border-radius: 20px; box-shadow: 0 0 40px rgba(168, 85, 247, 0.1); }
+
+        /* Home Section */
+        #home { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 100vh; }
+        .home-content h1 { font-size: 4rem; margin: 0.5rem 0; }
+        .btn-container { display: flex; justify-content: center; gap: 1.5rem; } /* Increased gap */
+        .home-socials { margin-top: 4rem; display: flex; justify-content: center; gap: 2rem; } /* Increased margin and gap */
+        .home-socials a { color: var(--secondary-text-color); font-size: 1.5rem; }
+
+        /* About Section */
+        .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+        .about-image-card img { width: 100px; }
+        .about-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 2rem 0; }
+        .info-card { text-align: center; padding: 1.5rem; }
+        .about-details ul { list-style: none; }
+        .about-details ul li { margin-bottom: 0.5rem; display:flex; align-items: flex-start; gap: 0.5rem; }
+        .about-details ul i { margin-top: 5px; color: var(--gradient-start); }
+        
+        /* Skills Section */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .skill-item { margin-bottom: 1.2rem; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+        .progress-bar { width: 100%; height: 8px; background-color: var(--border-color); border-radius: 10px; }
+        .progress { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end)); }
+        .tags-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+
+        /* Projects Section */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .project-card { display: flex; flex-direction: column; }
+        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+        .project-header i { font-size: 2.5rem; color: var(--gradient-start); }
+        .project-category { font-size: 0.8rem; font-weight: 500; background: rgba(192, 132, 252, 0.1); color: var(--gradient-start); padding: 0.2rem 0.6rem; border-radius: 12px; border: 1px solid var(--gradient-start); }
+        .project-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .project-card p { color: var(--secondary-text-color); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+        .project-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        
+        /* Experience Section */
+        .cta-card { text-align: center; padding: 2.5rem; margin-bottom: 5rem; }
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background: var(--card-color); top: 0; bottom: 0; left: 20px; transition: background-color 0.3s; }
+        .timeline-item { padding: 1rem 0 2rem 5rem; position: relative; }
+        .timeline-icon { position: absolute; left: 0; top: 15px; width: 44px; height: 44px; border-radius: 50%; background: var(--bg-color); border: 3px solid var(--gradient-start); display: flex; align-items: center; justify-content: center; z-index: 10; font-size: 1.5rem; transition: background-color 0.3s; }
+        .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+        .timeline-tag { font-size: 0.8rem; font-weight: 500; padding: 0.2rem 0.6rem; border-radius: 4px; color: #d1fae5; background-color: rgba(16, 185, 129, 0.2); }
+        .timeline-tag.competition { color: #e9d5ff; background-color: rgba(192, 132, 252, 0.2); }
+        .timeline-date { color: var(--secondary-text-color); font-size: 0.9rem; }
+        .timeline-content h3 { font-size: 1.3rem; margin-bottom: 0.2rem; }
+        .timeline-subtitle { color: var(--gradient-start); font-weight: 500; margin-bottom: 1rem; }
+        .timeline-content p { color: var(--secondary-text-color); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 4rem; }
+        
+        /* Certifications Section */
+        .certifications-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
+        .cert-card { display: flex; flex-direction: column; }
+        .cert-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; gap: 1rem; }
+        .cert-icon { font-size: 2rem; color: var(--gradient-start); }
+        .cert-status { font-size: 0.8rem; font-weight: 500; color: var(--active-green); background: rgba(16, 185, 129, 0.1); padding: 0.2rem 0.6rem; border-radius: 12px; display: flex; align-items: center; gap: 0.3rem; white-space: nowrap; }
+        .cert-status::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: var(--active-green); }
+        .cert-card h3 { font-size: 1.2rem; }
+        .cert-authority { color: var(--secondary-text-color); font-size: 0.9rem; margin-bottom: 1rem; }
+        .cert-card p { color: var(--secondary-text-color); font-size: 0.9rem; flex-grow: 1; margin: 1rem 0; }
+        .cert-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem; }
+        .cert-id { font-size: 0.8rem; color: var(--secondary-text-color); }
+        .verify-btn { color: var(--primary-text-color); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .verify-btn:hover { color: var(--gradient-end); }
+        .cert-card.upcoming { border-style: dashed; border-color: rgba(192, 132, 252, 0.4); }
+        .upcoming-date { color: var(--gradient-start); font-weight: 500; font-size: 0.9rem; }
+        .cert-stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+
+        /* Contact Section */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: flex-start; }
+        .contact-form label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        .contact-form input, .contact-form textarea { width: 100%; background: var(--input-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.8rem; color: var(--primary-text-color); font-family: var(--font-family); margin-bottom: 1rem; transition: background-color 0.3s; }
+        .contact-form textarea { resize: vertical; min-height: 120px; }
+
+        /* Footer */
+        .footer { background: var(--card-color); padding: 4rem 5% 2rem; transition: background-color 0.3s; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-about p { color: var(--secondary-text-color); margin: 1rem 0; max-width: 350px; }
+        .footer-socials a { color: var(--secondary-text-color); margin-right: 1rem; font-size: 1.5rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links a { color: var(--secondary-text-color); text-decoration: none; margin-bottom: 0.8rem; display: block; }
+        .footer-contact p { margin-bottom: 1rem; color: var(--secondary-text-color); }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .back-to-top { color: var(--primary-text-color); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+    
+    /* --- Light Theme Visibility Fixes --- */
+body.light-theme {
+    --bg-color: #f0f2f5;
+    --card-color: #ffffff;
+    --primary-text-color: #0d1117; /* Darker text for better contrast */
+    --secondary-text-color: #57606a;
+    --border-color: #d0d7de;
+
+    /* Override for gradient text (like H1 and H2) in light mode */
+    .gradient-text {
+        background: none;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+        color: #1e40af; /* A strong, professional dark blue for headings */
+    }
+
+    /* Override for active/hover navigation links */
+    .nav a:hover, .nav a.active {
+        background: none;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+        -webkit-text-fill-color: initial;
+        color: var(--button-blue);
+    }
+
+    /* Override for the purple hero links to make them darker */
+    .hero-action-link {
+        color: #581c87; /* Darker purple for high contrast */
+    }
+
+    /* Override for icons inside cards */
+    .info-card i {
+        color: var(--button-blue) !important;
+    }
+}
+/* --- Light Theme Visibility Fix for Timeline Tags --- */
+body.light-theme .timeline-tag {
+    color: #054c2e; /* Dark Green Text */
+    background-color: #c6f6d5; /* Light Green Background */
+}
+
+body.light-theme .timeline-tag.competition {
+    color: #5b21b6; /* Dark Purple Text */
+    background-color: #ede9fe; /* Light Purple Background */
+}
+/* Specific color for Volunteer Work tag */
+.timeline-tag.volunteer {
+    color: #93c5fd; /* Light Blue Text */
+    background-color: rgba(60, 130, 246, 0.2); /* Transparent Blue */
+}
+
+body.light-theme .timeline-tag.volunteer {
+    color: #1e40af; /* Dark Blue Text */
+    background-color: #dbeafe; /* Light Blue Background */
+}
+#particles-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* This is crucial to keep it behind all content */
+}
+/* --- Scroll-to-Reveal Animation --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.progress {
+    width: 0; /* Start skill bars at 0 width */
+    transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1); /* Animate the width */
+}
+/* --- Custom Cursor --- */
+.cursor-dot, .cursor-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: opacity 0.3s, transform 0.3s;
+}
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--gradient-end);
+}
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(34, 211, 238, 0.3);
+    transition: width 0.3s, height 0.3s, background-color 0.3s, transform 0.1s linear;
+}
+body:has(a:hover, button:hover, .hero-action-link:hover, [role="button"]:hover, [onclick]:hover) .cursor-outline {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(34, 211, 238, 0.5);
+}
+/* --- Chatbot Styles --- */
+.chatbot-toggler {
+    position: fixed;
+    bottom: 30px;
+    right: 35px;
+    height: 50px;
+    width: 50px;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.3s;
+}
+.chatbot-toggler:hover {
+    transform: scale(1.1);
+}
+.chatbot {
+    position: fixed;
+    right: 35px;
+    bottom: 100px;
+    width: 320px;
+    background: var(--card-color);
+    border-radius: 15px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.5);
+    transform-origin: bottom right;
+    transition: all 0.2s ease;
+    z-index: 100;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+}
+body.show-chatbot .chatbot {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+.chatbot-header {
+    padding: 16px 0;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+}
+.chatbox {
+    overflow-y: auto;
+    height: 310px;
+    padding: 20px 15px 80px;
+}
+.chatbox .chat {
+    display: flex;
+    list-style: none;
+    margin-bottom: 10px;
+}
+.chatbox .chat p {
+    padding: 12px 16px;
+    border-radius: 10px;
+    max-width: 75%;
+    font-size: 0.95rem;
+    background: var(--input-color);
+    color: var(--primary-text-color);
+}
+.chatbox .incoming p {
+    border-radius: 10px 10px 10px 0;
+}
+.chatbox .outgoing {
+    justify-content: flex-end;
+}
+.chatbox .outgoing p {
+    background: var(--button-blue);
+    color: #fff;
+    border-radius: 10px 10px 0 10px;
+}
+.chat-input {
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: var(--card-color);
+    padding: 10px 15px;
+    border-top: 1px solid var(--border-color);
+}
+.chat-input textarea {
+    height: 40px;
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    background: var(--input-color);
+    border-radius: 5px;
+    padding: 10px;
+    font-family: var(--font-family);
+    color: var(--primary-text-color);
+}
+.chat-input span {
+    align-self: flex-end;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+    </style>
+</head>
+<body>
+     <div id="particles-background"></div>
+         <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <button class="chatbot-toggler">
+        <i class='bx bxs-bot'></i>
+    </button>
+    <div class="chatbot">
+        <header class="chatbot-header">
+            <h2>AI Assistant</h2>
+        </header>
+        <ul class="chatbox">
+            <li class="chat incoming">
+                <p>Hi there 👋<br>How can I help you today?</p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea placeholder="Ask a question..." required></textarea>
+            <span id="send-btn" class="bx bxs-send"></span>
+        </div>
+    </div>
+    <header class="header">
+        <a href="#home" class="logo">Krish Patel</a>
+        <nav class="nav">
+            <a href="#home" class="active">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#certifications">Certifications</a><a href="#contact">Contact</a>
+        </nav>
+        <i class='bx bx-moon' id="theme-toggle"></i>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="home-content">
+                <h3>Hi there! 👋 I'm</h3><h1>Krish Patel</h1>
+                <h3>I'm a <span class="typing-text gradient-text"></span></h3>
+                <p style="max-width: 600px; margin: 1.5rem auto 2.5rem;">Passionate about creating innovative web solutions and exploring the frontiers of artificial intelligence. Let's build something amazing together!</p>
+                <div class="btn-container"><a href="#" class="btn btn-primary"><i class='bx bxs-download'></i> Download Re  sume</a><a href="#contact" class="btn btn-secondary">Let's Connect</a></div>
+                <div class="home-socials"><a href="#"><i class='bx bxl-github'></i></a><a href="#"><i class='bx bxl-linkedin-square'></i></a><a href="#"><i class='bx bxs-envelope'></i></a></div>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+           <h2 class="gradient-text ">About Me</h2>
+            <p class="section-subtitle">Get to know the person behind the code</p>
+            <div class="about-grid">
+                <div class="about-image-card"><img src="https://emojicdn.elk.sh/👨‍💻" alt="Developer Emoji"></div>
+                <div class="about-content">
+                    <p>Hello! I'm Krish Patel, a passionate web developer and AI enthusiast based in India. I love creating digital experiences that are not only functional but also beautiful and user-friendly.</p>
+                    <p>My journey in technology started with curiosity about how websites work, and it has evolved into a deep passion for full-stack development, artificial intelligence, and problem-solving through code.</p>
+                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge with the developer community.</p>
+                    <div class="about-cards">
+                        <div class="info-card"><i class='bx bx-code-alt'></i><h4>15+</h4><p>Projects Completed</p></div>
+                        <div class="info-card"><i class='bx bx-coffee-togo'></i><h4>500+</h4><p>Cups of Coffee</p></div>
+                    </div>
+                    <div class="about-details">
+                        <h3><i class='bx bxs-graduation'></i> Education</h3>
+                        <ul>
+                            <li><strong>Bachelor of Technology in Computer Science</strong><br>XYZ University • 2020-2024</li>
+                            <li><strong>High School</strong><br>ABC School • 2018-2020</li>
+                        </ul><br>
+                        <h3><i class='bx bxs-heart'></i> Fun Facts</h3>
+                        <ul>
+                            <li><i class='bx bx-check-circle'></i><div>I can solve a Rubik's cube in under 2 minutes</div></li>
+                            <li><i class='bx bx-check-circle'></i><div>I've participated in 10+ hackathons</div></li>
+                            <li><i class='bx bx-check-circle'></i><div>I love playing chess and coding challenges</div></li>
+                            <li><i class='bx bx-check-circle'></i><div>I'm learning Japanese in my free time</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br>
+        <section id="skills" class="container">
+            <h2 class="gradient-text">Skills & Expertise</h2>
+            <p class="section-subtitle">Technologies and tools I work with to bring ideas to life</p>
+            <div class="skills-grid">
+                <div class="skill-category reveal">
+                    <h3 style="margin-bottom: 2rem;"><i class='bx bx-code-block'></i> Frontend Development</h3>
+                    <div class="skill-item"><div class="skill-info"><p>React</p><p>90%</p></div><div class="progress-bar"><div class="progress" style="width: 90%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>TypeScript</p><p>85%</p></div><div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>Tailwind CSS</p><p>95%</p></div><div class="progress-bar"><div class="progress" style="width: 95%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>Next.js</p><p>80%</p></div><div class="progress-bar"><div class="progress" style="width: 80%;"></div></div></div>
+                </div>
+                <div class="skill-category reveal">
+                    <h3 style="margin-bottom: 2rem;"><i class='bx bxs-data'></i> Backend Development</h3>
+                    <div class="skill-item"><div class="skill-info"><p>Node.js</p><p>85%</p></div><div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>Python</p><p>80%</p></div><div class="progress-bar"><div class="progress" style="width: 80%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>Express.js</p><p>85%</p></div><div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>MongoDB</p><p>75%</p></div><div class="progress-bar"><div class="progress" style="width: 75%;"></div></div></div>
+                </div>
+                <div class="skill-category reveal">
+                    <h3 style="margin-bottom: 2rem;"><i class='bx bx-brain'></i> AI & Machine Learning</h3>
+                    <div class="skill-item"><div class="skill-info"><p>TensorFlow</p><p>70%</p></div><div class="progress-bar"><div class="progress" style="width: 70%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>OpenAI APIs</p><p>85%</p></div><div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>Python ML</p><p>75%</p></div><div class="progress-bar"><div class="progress" style="width: 75%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>Data Science</p><p>65%</p></div><div class="progress-bar"><div class="progress" style="width: 65%;"></div></div></div>
+                </div>
+                <div class="skill-category reveal">
+                    <h3 style="margin-bottom: 2rem;"><i class='bx bx-wrench'></i> Tools & Others</h3>
+                    <div class="skill-item"><div class="skill-info"><p>Git & GitHub</p><p>95%</p></div><div class="progress-bar"><div class="progress" style="width: 95%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>Docker</p><p>70%</p></div><div class="progress-bar"><div class="progress" style="width: 70%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>Figma</p><p>80%</p></div><div class="progress-bar"><div class="progress" style="width: 80%;"></div></div></div>
+                    <div class="skill-item"><div class="skill-info"><p>Vercel</p><p>90%</p></div><div class="progress-bar"><div class="progress" style="width: 90%;"></div></div></div>
+                </div>
+            </div>
+            <div class="tech-tags" style="margin-top: 4rem;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 2rem;">Technologies I Work With</h3>
+                <div class="tags-container">
+                    <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Python</span><span class="tag">Node.js</span><span class="tag">Tailwind CSS</span><span class="tag">MongoDB</span><span class="tag">Next.js</span><span class="tag">Express.js</span><span class="tag">Git</span><span class="tag">Docker</span><span class="tag">AWS</span><span class="tag">PostgreSQL</span><span class="tag">TensorFlow</span><span class="tag">OpenAI</span><span class="tag">Figma</span><span class="tag">Vercel</span>
+                </div>
+            </div>
+        </section>
+        <br><br>
+        <section id="projects" class="container">
+            <div class="info-card" style="margin-bottom: 4rem;"><i class='bx bx-code-alt'></i><h4 style="font-size: 1.3rem;">Always Learning</h4><p style="font-size: 1rem;">Technology evolves rapidly, and so do I. I'm constantly exploring new frameworks, tools, and methodologies to stay at the forefront of web development and AI innovation.</p></div>
+            <h2 class="gradient-text">Featured Projects</h2>
+            <p class="section-subtitle">A showcase of my recent work and the technologies I love working with</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header"><i class='bx bx-cart-alt'></i><span class="project-category"><i class='bx bx-code-alt'></i> Full Stack</span></div>
+                    <h3>AI-Powered E-Commerce Platform</h3>
+                    <p>A modern e-commerce platform with AI-driven product recommendations, real-time inventory management, and seamless payment integration. Features personalized shopping experiences and intelligent search.</p>
+                    <div class="card-tags"><span class="card-tag">React</span><span class="card-tag">Node.js</span><span class="card-tag">MongoDB</span><span class="card-tag">OpenAI API</span><span class="card-tag">Stripe</span></div>
+                    <div class="project-links"><a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem;"><i class='bx bxl-github'></i> Code</a><a href="#" class="btn btn-primary" style="padding: 0.5rem 1rem;"><i class='bx bx-link-external'></i> Live Demo</a></div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header"><i class='bx bxs-notepad'></i><span class="project-category"><i class='bx bx-brain'></i> AI/ML</span></div>
+                    <h3>Smart Task Manager</h3>
+                    <p>An intelligent task management app with AI-powered priority suggestions, deadline predictions, and productivity analytics. Helps users optimize their workflow and achieve better work-life balance.</p>
+                    <div class="card-tags"><span class="card-tag">React</span><span class="card-tag">TypeScript</span><span class="card-tag">Firebase</span><span class="card-tag">TensorFlow.js</span></div>
+                    <div class="project-links"><a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem;"><i class='bx bxl-github'></i> Code</a><a href="#" class="btn btn-primary" style="padding: 0.5rem 1rem;"><i class='bx bx-link-external'></i> Live Demo</a></div>
+                </div>
+            </div>
+            <h2 style="margin-top: 5rem;" class="gradient-text">More Projects</h2>
+            <div class="projects-grid" style="margin-top: 2rem;">
+                <div class="project-card">
+                    <div class="project-header"><i class='bx bxs-chat'></i><span class="project-category"><i class='bx bx-code-alt'></i> Full Stack</span></div>
+                    <h3>Real-Time Chat Application</h3>
+                    <p>A feature-rich chat application with real-time messaging, file sharing, video calls, and end-to-end encryption. Supports group chats, custom themes, and mobile responsiveness.</p>
+                    <div class="card-tags"><span class="card-tag">React</span><span class="card-tag">Socket.io</span><span class="card-tag">Express</span><span class="card-tag">+1 more</span></div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header"><i class='bx bxs-cloud'></i><span class="project-category"><i class='bx bx-desktop'></i> Frontend</span></div>
+                    <h3>Weather Forecast Dashboard</h3>
+                    <p>An elegant weather dashboard with detailed forecasts, interactive maps, weather alerts, and historical data visualization. Features location-based services and customizable widgets.</p>
+                    <div class="card-tags"><span class="card-tag">Vue.js</span><span class="card-tag">D3.js</span><span class="card-tag">Weather API</span><span class="card-tag">+1 more</span></div>
+                </div>
+            </div>
+        </section>
+<br><br>
+        <section id="experience" class="container">
+            <div class="cta-card"><h4 style="font-size: 1.3rem;">Interested in collaborating?</h4><p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p><br><br><a href="#contact" class="btn btn-primary">Let's Work Together</a></div>
+            <h2 class="gradient-text">Experience & Achievements</h2>
+            <p class="section-subtitle">My journey through internships, hackathons, and meaningful projects</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class='bx bx-code-alt'></i></div>
+                    <div class="timeline-content"><div class="timeline-header"><span class="timeline-tag">Work Experience</span><span class="timeline-date">Jan 2023 - Present</span></div><h3>Freelance Web Developer</h3><p class="timeline-subtitle">Self-Employed</p><p>Delivered 10+ custom websites for small businesses and startups. Specialized in modern web technologies and user experience design. Maintained 100% client satisfaction rate.</p><div class="card-tags"><span class="card-tag">React</span><span class="card-tag">Next.js</span><span class="card-tag">Node.js</span><span class="card-tag">MongoDB</span></div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class='bx bxs-briefcase'></i></div>
+                    <div class="timeline-content"><div class="timeline-header"><span class="timeline-tag">Work Experience</span><span class="timeline-date">Jun 2023 - Aug 2023</span></div><h3>Frontend Developer Intern</h3><p class="timeline-subtitle">TechCorp Solutions</p><p>Developed responsive web applications using React and TypeScript. Collaborated with design team to implement pixel-perfect UI components and improved website performance by 30%.</p><div class="card-tags"><span class="card-tag">React</span><span class="card-tag">TypeScript</span><span class="card-tag">Tailwind CSS</span></div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class='bx bxs-trophy'></i></div>
+                    <div class="timeline-content"><div class="timeline-header"><span class="timeline-tag competition">Competition</span><span class="timeline-date">Mar 2023</span></div><h3>Winner - Smart City Hackathon</h3><p class="timeline-subtitle">City Innovation Lab</p><p>Led a team of 4 developers to create an AI-powered traffic management system. Won 1st place among 50+ teams with our innovative solution reducing traffic congestion by 25%.</p><div class="card-tags"><span class="card-tag">Python</span><span class="card-tag">Machine Learning</span><span class="card-tag">OpenCV</span><span class="card-tag">Flask</span></div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class='bx bxs-group'></i></div>
+                    <div class="timeline-content"><div class="timeline-header"><span class="timeline-tag volunteer">Volunteer Work</span><span class="timeline-date">Sep 2022 - Dec 2022</span></div><h3>Technical Lead</h3><p class="timeline-subtitle">Code for Community</p><p>Led a volunteer team to build a digital platform for local NGOs. Mentored 15+ junior developers and organized coding workshops for underprivileged students.</p><div class="card-tags"><span class="card-tag">Vue.js</span><span class="card-tag">Express.js</span><span class="card-tag">PostgreSQL</span><span class="card-tag">Docker</span></div></div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-icon"><i class='bx bxs-trophy'></i></div>
+                    <div class="timeline-content"><div class="timeline-header"><span class="timeline-tag competition">Competition</span><span class="timeline-date">Oct 2022</span></div><h3>Participant - NASA Space Apps</h3><p class="timeline-subtitle">NASA</p><p>Participated in the global NASA Space Apps Challenge. Developed a climate monitoring dashboard using satellite data and machine learning algorithms.</p><div class="card-tags"><span class="card-tag">Python</span><span class="card-tag">TensorFlow</span><span class="card-tag">D3.js</span><span class="card-tag">NASA APIs</span></div></div>
+                </div>
+            </div>
+            <div class="stats-bar">
+                <div class="info-card"><h4>15+</h4><p>Projects Completed</p></div>
+                <div class="info-card"><h4>5+</h4><p>Hackathons Won</p></div>
+                <div class="info-card"><h4>100%</h4><p>Client Satisfaction</p></div>
+                <div class="info-card"><h4>2+</h4><p>Years Experience</p></div>
+            </div>
+        </section>
+        <br><br>
+        <section id="certifications" class="container">
+            <h2 class="gradient-text">Certifications</h2>
+            <p class="section-subtitle">Professional certifications that validate my expertise and commitment to continuous learning</p>
+            <div class="certifications-grid">
+                <div class="cert-card">
+                    <div class="cert-header"><div class="cert-icon"><i class='bx bxs-award'></i></div><div><h3>AWS Certified Cloud Practitioner</h3><p class="cert-authority">Amazon Web Services • Dec 2023</p></div><div class="cert-status">Active</div></div>
+                    <p>Demonstrated foundational knowledge of AWS cloud services, security, and architectural principles.</p><div class="card-tags"><span class="card-tag">Cloud Computing</span><span class="card-tag">AWS Services</span><span class="card-tag">Security</span></div>
+                    <div class="cert-footer"><span class="cert-id">AWS-CCP-2023-001</span><a href="#" class="verify-btn"><i class='bx bx-link-external'></i> Verify</a></div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-header"><div class="cert-icon"><i class='bx bxs-award'></i></div><div><h3>React Developer Certification</h3><p class="cert-authority">Meta (Facebook) • Aug 2023</p></div><div class="cert-status">Active</div></div>
+                    <p>Advanced proficiency in React ecosystem including hooks, context, performance optimization, and testing.</p><div class="card-tags"><span class="card-tag">React</span><span class="card-tag">JavaScript</span><span class="card-tag">Frontend</span></div>
+                    <div class="cert-footer"><span class="cert-id">META-REACT-2023-084</span><a href="#" class="verify-btn"><i class='bx bx-link-external'></i> Verify</a></div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-header"><div class="cert-icon"><i class='bx bxs-award'></i></div><div><h3>Certified Ethical Hacker (CEH)</h3><p class="cert-authority">EC-Council • Jun 2023</p></div><div class="cert-status">Active</div></div>
+                    <p>Knowledge of information security vulnerabilities and ethical hacking methodologies.</p><div class="card-tags"><span class="card-tag">Cybersecurity</span><span class="card-tag">Ethical Hacking</span></div>
+                    <div class="cert-footer"><span class="cert-id">CEH-2023-086</span><a href="#" class="verify-btn"><i class='bx bx-link-external'></i> Verify</a></div>
+                </div>
+            </div>
+            <h2 style="margin-top: 5rem;" class="gradient-text">Upcoming Certifications</h2>
+            <div class="certifications-grid" style="margin-top: 2rem;">
+                <div class="cert-card upcoming"><div class="cert-header"><div class="cert-icon"><i class='bx bxs-certification'></i></div><div><h3>Kubernetes Certified Application Developer</h3><p class="cert-authority">CNCF</p></div></div><p>Planning to achieve expertise in Kubernetes application development and deployment.</p><div class="cert-footer"><span class="upcoming-date"><i class='bx bx-time-five'></i> Expected: Q2 2024</span></div></div>
+                <div class="cert-card upcoming"><div class="cert-header"><div class="cert-icon"><i class='bx bxs-certification'></i></div><div><h3>TensorFlow Developer Certificate</h3><p class="cert-authority">Google</p></div></div><p>Advancing machine learning skills with TensorFlow framework certification.</p><div class="cert-footer"><span class="upcoming-date"><i class='bx bx-time-five'></i> Expected: Q1 2024</span></div></div>
+            </div>
+            <div class="cert-stats-bar"><div class="info-card"><h4>6</h4><p>Active Certifications</p></div><div class="info-card"><h4>2</h4><p>In Progress</p></div><div class="info-card"><h4>100%</h4><p>Pass Rate</p></div></div>
+        </section>
+        <br><br>
+        <section id="contact" class="container">
+            <h2 class="gradient-text">Get In Touch</h2>
+            <p class="section-subtitle">Have a project in mind or just want to say hello? I'd love to hear from you!</p>
+            <div class="contact-grid">
+                <div class="contact-left">
+                    <h3>Let's Connect</h3>
+                    <p>I'm always interested in new opportunities, whether that's a role at a company I admire, a freelance project, or a chance to collaborate on something meaningful. Feel free to reach out!</p>
+                    <div style="margin-top: 2rem;"><div class="contact-info-item"><i class='bx bxs-envelope'></i><div><h4>Email</h4><p>krish.patel@example.com</p></div></div><br><div class="contact-info-item"><i class='bx bxs-phone'></i><div><h4>Phone</h4><p>+91 99092 54858</p></div></div><br><div class="contact-info-item"><i class='bx bxs-map'></i><div><h4>Location</h4><p>Gujarat, India</p></div></div></div>
+                    <div class="social-follow"><h4>Follow me on</h4><br><div class="footer-socials"><a href="#"><i class='bx bxl-github'></i></a><a href="#"><i class='bx bxl-linkedin'></i></a><a href="#"><i class='bx bxl-twitter'></i></a></div></div>
+                </div>
+                <div class="contact-right">
+                    <div class="info-card" style="text-align: left; margin-bottom: 2rem;"><h4>Quick Response Guaranteed</h4><p style="font-size: 0.9rem;">I typically respond to messages within 24 hours. For urgent matters, feel free to call me directly.</p></div>
+                    <form class="contact-form">
+                        <h3>Send me a message</h3>
+                        <div style="display: flex; gap: 1rem;"><div style="flex: 1;"><label for="name">Your Name</label><input type="text" id="name" placeholder="John Doe"></div><div style="flex: 1;"><label for="email">Email Address</label><input type="email" id="email" placeholder="john@example.com"></div></div>
+                        <div><label for="subject">Subject</label><input type="text" id="subject" placeholder="Project Discussion"></div>
+                        <div><label for="message">Message</label><textarea id="message" placeholder="Tell me about your project..."></textarea></div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;"><i class='bx bxs-paper-plane'></i> Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <a href="#home" class="logo">Krish Patel</a>
+                <p>A passionate web developer and AI enthusiast dedicated to creating innovative digital solutions. Always excited about new technologies and challenges.</p>
+                <div class="footer-socials"><a href="#"><i class='bx bxl-github'></i></a><a href="#"><i class='bx bxl-linkedin'></i></a><a href="#"><i class='bx bxs-envelope'></i></a></div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li><li><a href="#experience">Experience</a></li><li><a href="#contact">Contact</a></li></ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Get in Touch</h4>
+                <p>Mumbai, India</p><p>krish.patel@example.com</p><p>+91 99092 54858</p>
+                <a href="#contact" class="btn btn-secondary" style="padding: 0.6rem 1.5rem; margin-top: 0.5rem;">Let's Work Together</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Krish Patel. Made with ❤️ and lots of coffee ☕</p>
+            <a href="#home" class="back-to-top"><i class='bx bx-up-arrow-alt'></i> Back to Top</a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+   // --- FEATURE 1: DYNAMIC SCROLL ANIMATIONS (Corrected) ---
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+
+            // Specifically target progress bars within a visible skill category
+            if (entry.target.classList.contains('skill-category')) {
+                const progressBars = entry.target.querySelectorAll('.progress');
+                progressBars.forEach(bar => {
+                    // Set a short delay to ensure the transition fires correctly
+                    setTimeout(() => {
+                        bar.style.width = bar.dataset.width + '%';
+                    }, 200);
+                });
+            }
+            // Stop observing the element once it has been revealed for better performance
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.15 // Triggers when 15% of the element is visible
+});
+
+const revealElements = document.querySelectorAll('.reveal');
+revealElements.forEach(el => observer.observe(el));
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorOutline = document.querySelector('.cursor-outline');
+window.addEventListener('mousemove', function(e) {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    cursorDot.style.opacity = 1;
+    cursorOutline.style.opacity = 1;
+
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+    
+    cursorOutline.style.left = `${posX}px`;
+    cursorOutline.style.top = `${posY}px`;
+});
+
+// Delaying the observation slightly to ensure all elements are loaded
+document.addEventListener("DOMContentLoaded", () => {
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
+});
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('krish-patel-portfolio-theme');
+
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+            if (currentTheme === 'light-theme') {
+                themeToggle.classList.replace('bx-moon', 'bx-sun');
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-theme');
+            let theme = 'dark-theme';
+            if (body.classList.contains('light-theme')) {
+                themeToggle.classList.replace('bx-moon', 'bx-sun');
+                theme = 'light-theme';
+            } else {
+                themeToggle.classList.replace('bx-sun', 'bx-moon');
+            }
+            localStorage.setItem('krish-patel-portfolio-theme', theme);
+        });
+
+        // Typing Text Animation
+        if (document.querySelector('.typing-text')) {
+            new Typed('.typing-text', {
+                strings: ['Web Developer', 'AI Enthusiast', 'Full-Stack Developer', 'Problem Solver'],
+                typeSpeed: 70, backSpeed: 50, backDelay: 1000, loop: true
+            });
+        }
+
+        // Active Nav Link on Scroll
+        const sections = document.querySelectorAll('main section[id]');
+        const navLinks = document.querySelectorAll('.nav a');
+        window.addEventListener('scroll', () => {
+            let current = 'home';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id') || 'home';
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        // --- tsParticles Animation Configuration ---
+tsParticles.load("particles-background", {
+    background: {
+        color: {
+            value: "transparent" // This makes the background of the canvas transparent
+        }
+    },
+    fpsLimit: 60,
+    interactivity: {
+        events: {
+            onHover: {
+                enable: true,
+                mode: "repulse" // Particles will move away from the cursor
+            },
+            onClick: {
+                enable: true,
+                mode: "push" // Adds more particles on click
+            },
+            resize: true
+        },
+        modes: {
+            push: {
+                quantity: 4
+            },
+            repulse: {
+                distance: 150,
+                duration: 0.4
+            }
+        }
+    },
+    particles: {
+        color: {
+            value: "#999999" // A neutral gray color that is visible on both light and dark modes
+        },
+        links: {
+            color: "#999999",
+            distance: 150,
+            enable: true,
+            opacity: 0.5,
+            width: 1
+        },
+        collisions: {
+            enable: true
+        },
+        move: {
+            direction: "none",
+            enable: true,
+            outModes: {
+                default: "bounce"
+            },
+            random: false,
+            speed: 1, // A slow, subtle speed
+            straight: false
+        },
+        number: {
+            density: {
+                enable: true,
+                area: 800
+            },
+            value: 80 // The number of particles
+        },
+        opacity: {
+            value: 0.5
+        },
+        shape: {
+            type: "circle"
+        },
+        size: {
+            value: { min: 1, max: 3 } // Particles will have a random size
+        }
+    },
+    detectRetina: true
+});
+// --- FEATURE 3: AI CHATBOT ---
+const chatbotToggler = document.querySelector(".chatbot-toggler");
+const sendChatBtn = document.querySelector("#send-btn");
+const chatInput = document.querySelector(".chat-input textarea");
+const chatbox = document.querySelector(".chatbox");
+
+const createChatLi = (message, className) => {
+    const chatLi = document.createElement("li");
+    chatLi.classList.add("chat", className);
+    let chatContent = `<p>${message}</p>`;
+    chatLi.innerHTML = chatContent;
+    return chatLi;
+}
+
+const generateResponse = (userMessage) => {
+    userMessage = userMessage.toLowerCase();
+    let response = "I'm sorry, I don't understand. You can ask about my skills, experience, or how to contact me.";
+
+    if(userMessage.includes("skill") || userMessage.includes("tech")) {
+        response = "I'm skilled in Frontend with React & Next.js, and Backend with Node.js & Python. I also have experience with AI/ML tools like TensorFlow and OpenAI's APIs.";
+    } else if (userMessage.includes("experience") || userMessage.includes("hackathon")) {
+        response = "I have experience as a freelance web developer and I've won several hackathons, including a Smart City challenge where my team built an AI traffic management system.";
+    } else if (userMessage.includes("contact") || userMessage.includes("email") || userMessage.includes("connect")) {
+        response = "You can reach me via the contact form on this site, or email me at krish.patel@example.com.";
+    } else if (userMessage.includes("hello") || userMessage.includes("hi")) {
+        response = "Hello there! How can I assist you?";
+    }
+    return response;
+}
+
+const handleChat = () => {
+    const userMessage = chatInput.value.trim();
+    if(!userMessage) return;
+    chatInput.value = "";
+
+    chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+    chatbox.scrollTo(0, chatbox.scrollHeight);
+
+    setTimeout(() => {
+        const botResponse = generateResponse(userMessage);
+        chatbox.appendChild(createChatLi(botResponse, "incoming"));
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+    }, 600);
+}
+
+sendChatBtn.addEventListener("click", handleChat);
+chatInput.addEventListener("keydown", (e) => {
+    if(e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        handleChat();
+    }
+});
+chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+
+    </script>
+
+    
+</body>
+</html>
