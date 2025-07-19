@@ -8,7 +8,7 @@ A dynamic and interactive personal portfolio website built for the **BuildFolio 
 
 ### **Live Demo**
 
-**[View the live project here](https://your-live-portfolio-link.com)**
+**[View the live project here](https://krish-patel-portfolio.netlify.app/)**
 
 *(Remember to replace the link above after you deploy your site!)*
 
