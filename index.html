@@ -223,8 +223,8 @@
         .footer-links a { color: var(--secondary-text-color); text-decoration: none; margin-bottom: 0.8rem; display: block; }
         .footer-contact p { margin-bottom: 1rem; color: var(--secondary-text-color); }
         .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .back-to-top { color: var(--primary-text-color); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
-    
+        .back-to-top { color: var(--primary-text-color); text-decoration: none; display: flex; align-items: center; gap: 0.5rem;}
+
     /* --- Light Theme Visibility Fixes --- */
 body.light-theme {
     --bg-color: #f0f2f5;
@@ -443,6 +443,14 @@ body.show-chatbot .chatbot {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
+}
+.disclaimer-note {
+    font-size: 0.8rem;
+    color: var(--secondary-text-color);
+    font-style: italic;
+    flex-grow: 1; /* Pushes the copyright text to the right */
+    text-align: left;
+    
 }
     </style>
 </head>
@@ -698,8 +706,13 @@ body.show-chatbot .chatbot {
                 <a href="#contact" class="btn btn-secondary" style="padding: 0.6rem 1.5rem; margin-top: 0.5rem;">Let's Work Together</a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 Krish Patel. Made with ❤️ and lots of coffee ☕</p>
+    <div class="footer-bottom">
+        <p>© 2025 Krish Patel. Made with ❤️ and lots of coffee ☕</p>
+        <div class="disclaimer">
+            <p class="disclaimer-note"><strong>Note:</strong> This is a hackathon submission. All content is for demonstration purposes only. </p>
+            <p class="disclaimer-note">The project "Live Demo", "Code", and "Download Resume" links are not connected to deployed applications or real files.</p>
+        </div>
+            
             <a href="#home" class="back-to-top"><i class='bx bx-up-arrow-alt'></i> Back to Top</a>
         </div>
     </footer>
