@@ -1,8 +1,6 @@
-# BuildFolio Hackathon: AI-Powered Developer Portfolio
+# BuildFolio Hackathon:
 
 A dynamic and interactive personal portfolio website built for the **BuildFolio 24-hour hackathon**. This project showcases my skills, experience, and projects through a modern, responsive interface packed with unique, high-impact features designed to stand out.
-
-**The hackathon starts in less than an hour!** Good luck! 🚀
 
 ---
 
@@ -10,13 +8,14 @@ A dynamic and interactive personal portfolio website built for the **BuildFolio 
 
 **[View the live project here](https://krish-patel-portfolio.netlify.app/)**
 
-*(Remember to replace the link above after you deploy your site!)*
 
+### **NOTE**
+
+** All the details (like project , experience) are just for refrence , partial details are correct , and just button(Link) is made for the viewpoint it will not redirect to the deployed project  (Because its just for demo )
 ---
 
 ### **Screenshots**
 
-### **Screenshots**
 
 ![Dark Mode Preview](./screenshots/Dark_mode.png)
 *<p align="center">Dark Mode</p>*
@@ -63,5 +62,4 @@ That's it!
 ### **Author**
 
 * **Krish Patel**
-* **GitHub**: [@your-github-username](https://github.com/your-github-username)
-* **LinkedIn**: [Your Name](https://linkedin.com/in/your-linkedin-profile)
+* **GitHub**: Krish Patel : (https://github.com/Krishp285)
