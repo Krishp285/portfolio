@@ -1,26 +1,26 @@
-# BuildFolio Hackathon: AI-Powered Developer Portfolio
+# BuildFolio Hackathon:
 
 A dynamic and interactive personal portfolio website built for the **BuildFolio 24-hour hackathon**. This project showcases my skills, experience, and projects through a modern, responsive interface packed with unique, high-impact features designed to stand out.
-
-**The hackathon starts in less than an hour!** Good luck! 🚀
 
 ---
 
 ### **Live Demo**
 
-**[View the live project here](https://your-live-portfolio-link.com)**
+**[View the live project here](https://krish-patel-portfolio.netlify.app/)**
 
-*(Remember to replace the link above after you deploy your site!)*
 
+### **NOTE**
+
+** All the details (like project , experience) are just for refrence , partial details are correct , and just button(Link) is made for the viewpoint it will not redirect to the deployed project  (Because its just for demo )
 ---
 
 ### **Screenshots**
 
-![Dark Mode Preview](<img width="1900" height="871" alt="image" src="https://github.com/user-attachments/assets/b29d7e7c-004e-4f52-87fa-61bd1f3c1e2a" />
-)
+
+![Dark Mode Preview](./screenshots/Dark_mode.png)
 *<p align="center">Dark Mode</p>*
 
-![Light Mode Preview](https://i.imgur.com/8N4jR1t.png)
+![Light Mode Preview](./screenshots/Light_mode.png)
 *<p align="center">Light Mode</p>*
 
 ---
@@ -62,5 +62,4 @@ That's it!
 ### **Author**
 
 * **Krish Patel**
-* **GitHub**: [@your-github-username](https://github.com/your-github-username)
-* **LinkedIn**: [Your Name](https://linkedin.com/in/your-linkedin-profile)
+* **GitHub**: Krish Patel : (https://github.com/Krishp285)
