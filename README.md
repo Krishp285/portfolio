@@ -16,11 +16,12 @@ A dynamic and interactive personal portfolio website built for the **BuildFolio 
 
 ### **Screenshots**
 
-![Dark Mode Preview](<img width="1900" height="871" alt="image" src="https://github.com/user-attachments/assets/b29d7e7c-004e-4f52-87fa-61bd1f3c1e2a" />
-)
+### **Screenshots**
+
+![Dark Mode Preview](./screenshots/Dark_mode.png)
 *<p align="center">Dark Mode</p>*
 
-![Light Mode Preview](https://i.imgur.com/8N4jR1t.png)
+![Light Mode Preview](./screenshots/Light_mode.png)
 *<p align="center">Light Mode</p>*
 
 ---
